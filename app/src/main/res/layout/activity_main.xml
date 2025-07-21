@@ -5,9 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    >
-
+    android:padding="@dimen/common_spacing"
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/avatar"
@@ -15,10 +14,10 @@
         android:layout_height="@dimen/posts_avatar_size"
         android:layout_marginBottom="@dimen/common_spacing"
         android:contentDescription="@string/description_post_author_avatar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/barrier"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/post_avatar_drawable" />
+        tools:srcCompat="@sample/posts.json/data/authorAvatar" />
 
     <TextView
         android:id="@+id/author"
@@ -64,8 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="avatar,published,menu"
-        />
+        app:constraint_referenced_ids="avatar,published,menu" />
 
     <TextView
         android:id="@+id/content"
@@ -79,77 +77,76 @@
         tools:text="@sample/posts.json/data/content" />
 
     <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrierAfterText"
+        android:id="@+id/barrier2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="content"
         />
 
-    <ImageView
-        android:id="@+id/imageLike"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/outline_like_24"
-        android:layout_marginTop="@dimen/common_spacing"
-        app:layout_constraintTop_toBottomOf="@id/barrierAfterText"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
     <TextView
         android:id="@+id/countLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="40"
-        android:layout_marginTop="@dimen/common_spacing"
-        app:layout_constraintTop_toBottomOf="@id/barrierAfterText"
+        android:text="5"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
         app:layout_constraintStart_toEndOf="@id/imageLike"
-        android:layout_marginStart="8dp"
+        android:paddingTop="24dp"
+        android:paddingStart="5dp"
         />
 
     <ImageView
-        android:id="@+id/imageRepost"
+        android:id="@+id/imageLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/baseline_double_arrow_24"
-        android:layout_marginTop="@dimen/common_spacing"
-        android:layout_marginStart="32dp"
-        app:layout_constraintTop_toBottomOf="@id/barrierAfterText"
-        app:layout_constraintStart_toEndOf="@id/countLike"
+        app:srcCompat="@drawable/ic_like_24"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingTop="24dp"
         />
 
     <TextView
         android:id="@+id/countRepost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="62"
-        android:layout_marginTop="@dimen/common_spacing"
-        app:layout_constraintTop_toBottomOf="@id/barrierAfterText"
+        android:text="5"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
         app:layout_constraintStart_toEndOf="@id/imageRepost"
-        android:layout_marginStart="8dp"
+        android:paddingTop="24dp"
+        android:paddingStart="5dp"
+
         />
 
     <ImageView
-        android:id="@+id/imageSee"
+        android:id="@+id/imageRepost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/outline_eye_tracking_24"
-        android:layout_marginTop="@dimen/common_spacing"
-        app:layout_constraintTop_toBottomOf="@id/barrierAfterText"
-        app:layout_constraintEnd_toStartOf="@id/countSee"
+        app:srcCompat="@drawable/share_24px"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
+        app:layout_constraintStart_toEndOf="@id/countLike"
+        android:paddingTop="24dp"
+        android:paddingStart="16dp"
         />
 
     <TextView
-        android:id="@+id/countSee"
+        android:id="@+id/countViews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="146"
-        android:layout_marginTop="@dimen/common_spacing"
-        app:layout_constraintTop_toBottomOf="@id/barrierAfterText"
+        android:text="5"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp"
+        android:paddingTop="24dp"
         />
 
-
+    <ImageView
+        android:id="@+id/imageViews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/visibility_24px"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
+        app:layout_constraintEnd_toStartOf="@id/countViews"
+        android:paddingEnd="5dp"
+        android:paddingTop="24dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "NMedia"
-include ':app'
+include(":app")
