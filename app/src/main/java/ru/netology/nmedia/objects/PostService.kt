@@ -1,7 +1,6 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.objects
 
 import kotlin.math.floor
-import kotlin.math.round
 
 object PostService {
     fun shortCount(value: Int): String {
