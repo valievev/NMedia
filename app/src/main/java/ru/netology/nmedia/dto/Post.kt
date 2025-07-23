@@ -1,4 +1,4 @@
-package ru.netology.nmedia
+package ru.netology.nmedia.dto
 
 data class Post(
     val id: Int,
@@ -6,7 +6,7 @@ data class Post(
     val authorAvatar: String,
     val published: String,
     val content: String,
-    var likeByMe: Boolean = false,
-    var countLikes: Int = 0,
-    var countReposts: Int = 0
+    val likeByMe: Boolean = false,
+    val countLikes: Int = 0,
+    val countReposts: Int = 0
 )
