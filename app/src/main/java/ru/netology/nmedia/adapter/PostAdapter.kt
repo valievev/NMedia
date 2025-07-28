@@ -2,10 +2,12 @@ package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.objects.PostDiffCallback
 import ru.netology.nmedia.objects.PostService
 
 typealias OnItemLikeListener = (post: Post) -> Unit
@@ -15,23 +17,15 @@ class PostAdapter(
     private val onItemLikeListener: OnItemLikeListener,
     private val onItemRepostListener: OnItemRepostListener
 ) :
-    RecyclerView.Adapter<PostViewHolder>() {
-
-    var list: List<Post> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    ListAdapter<Post,PostViewHolder>(PostDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PostViewHolder(binding, onItemLikeListener, onItemRepostListener)
     }
 
-    override fun getItemCount(): Int = list.size
-
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        val post: Post = list[position]
+        val post = getItem(position)
         holder.bind(post)
     }
 
