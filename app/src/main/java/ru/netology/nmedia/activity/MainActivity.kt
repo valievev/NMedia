@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.viewEditInfo.visibility = View.GONE
-        binding.viewEditInfo.visibility = View.INVISIBLE
+        //binding.viewEditInfo.visibility = View.INVISIBLE
 
 
         viewModel.data.observe(this) { posts ->
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         binding.cancelEditViewImage.setOnClickListener {
             with(binding) {
                 viewEditInfo.visibility = View.GONE
-                viewEditInfo.visibility = View.INVISIBLE
+                //viewEditInfo.visibility = View.INVISIBLE
                 content.clearFocus()
                 content.setText("")
                 viewModel.cancelEdit()
