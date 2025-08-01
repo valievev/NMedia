@@ -4,4 +4,9 @@
     <string name="hello">Привет, Мир!</string>
     <string name="description_post_author_avatar">Аватар автора поста</string>
     <string name="description_post_menu">Меню поста</string>
+    <string name="menu_remove">Удалить</string>
+    <string name="content_post_hint">Текст поста</string>
+    <string name="error_empty_content">Текст поста не указан</string>
+    <string name="menu_edit">Редактировать</string>
+    <string name="edit_view_text">Редактирование Поста</string>
 </resources>
