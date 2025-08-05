@@ -56,19 +56,20 @@ class PostViewHolder(
             author.text = post.author
             published.text = post.published
             content.text = post.content
-            countLike.text = PostService.shortCount(post.countLikes)
-            countRepost.text = PostService.shortCount(post.countReposts)
-            imageLike.setImageResource(
-                if (post.likeByMe)
-                    R.drawable.ic_liked_24
-                else
-                    R.drawable.ic_like_24
-            )
-            imageLike.setOnClickListener {
+            likeButton.text = PostService.shortCount(post.countLikes)
+            repostButton.text = PostService.shortCount(post.countReposts)
+            likeButton.isChecked = post.likeByMe
+//            likeButton.icon =
+//                if (post.likeByMe)
+//                    R.drawable.ic_liked_24
+//                else
+//                    R.drawable.ic_like_24
+//            )
+            likeButton.setOnClickListener {
                 onInteraction.onLike(post)
 
             }
-            imageRepost.setOnClickListener {
+            repostButton.setOnClickListener {
                 onInteraction.onRepost(post)
             }
             menu.setOnClickListener {
