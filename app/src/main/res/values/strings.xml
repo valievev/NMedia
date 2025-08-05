@@ -3,4 +3,9 @@
     <string name="hello">Hello World!</string>
     <string name="description_post_author_avatar">Post author avatar</string>
     <string name="description_post_menu">Post menu</string>
+    <string name="menu_remove">Delete</string>
+    <string name="content_post_hint">Post Text</string>
+    <string name="error_empty_content">Content is null</string>
+    <string name="menu_edit">Edit Post</string>
+    <string name="edit_view_text">Edit Post</string>
 </resources>

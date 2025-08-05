@@ -117,6 +117,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
         }
         data.value = posts
     }
+
     override fun repostById(id: Int) {
         posts = posts.map { post ->
             if (post.id == id) {
@@ -129,4 +130,32 @@ class PostRepositoryInMemoryImpl : PostRepository {
         }
         data.value = posts
     }
+
+    override fun deleteById(id: Int) {
+        posts = posts.filter { it.id != id }
+        data.value = posts
+    }
+
+    override fun save(post: Post) {
+        posts = if (post.id == 0) {
+            listOf(post.copy(id = getNextId(), author = "me", published = "now")) + posts
+        } else {
+            posts.map {
+                if (it.id == post.id) {
+                    it.copy(content = post.content)
+                } else {
+                    it
+                }
+            }
+        }
+        data.value = posts
+    }
+
+    private fun getNextId(): Int {
+        var nextId: Int = 1
+        nextId = posts.maxOf { it.id }
+        return ++nextId
+    }
+
+
 }
