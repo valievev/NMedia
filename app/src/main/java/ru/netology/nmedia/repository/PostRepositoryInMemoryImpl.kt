@@ -1,7 +1,12 @@
 package ru.netology.nmedia.repository
 
+import android.app.Activity
+import android.content.Intent
+import android.provider.Settings.Global.getString
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import ru.netology.nmedia.R
 import ru.netology.nmedia.dto.Post
 
 class PostRepositoryInMemoryImpl : PostRepository {
@@ -36,7 +41,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             countLikes = 14_999,
             likeByMe = false,
             countReposts = 1_099_990,
-            authorAvatar = "some path"
+            authorAvatar = "some path",
+            srcVideo = "https://rutube.ru/video/1d1aa69dd8a86750fdeef1625e03b00e/"
         ),
         Post(
             id = 4,
@@ -119,6 +125,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
     }
 
     override fun repostById(id: Int) {
+
         posts = posts.map { post ->
             if (post.id == id) {
                 post.copy(

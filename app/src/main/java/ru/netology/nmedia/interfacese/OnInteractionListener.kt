@@ -8,5 +8,6 @@ interface OnInteractionListener {
     fun onRepost(post: Post){}
     fun onDelete(post: Post){}
     fun onEdit(post: Post){}
+    fun onOpenVideoSrc(post: Post){}
 
 }

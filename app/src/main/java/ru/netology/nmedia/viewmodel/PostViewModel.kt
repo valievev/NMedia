@@ -22,7 +22,6 @@ class PostViewModel : ViewModel() {
     val data = repository.getAll()
     val edited = MutableLiveData(emptyPost)
 
-
     fun save(content: String) {
         edited.value?.let {
             val text = content.trim()
@@ -38,7 +37,7 @@ class PostViewModel : ViewModel() {
         edited.value = post
     }
 
-    fun cancelEdit() {
+    fun restorePost() {
         edited.value = emptyPost;
     }
 

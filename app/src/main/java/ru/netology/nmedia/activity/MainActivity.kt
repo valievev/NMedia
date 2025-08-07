@@ -1,9 +1,8 @@
 package ru.netology.nmedia.activity
 
-import android.inputmethodservice.Keyboard
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.R
@@ -11,8 +10,10 @@ import ru.netology.nmedia.adapter.PostAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.interfacese.OnInteractionListener
-import ru.netology.nmedia.objects.AndroidUtils
+import ru.netology.nmedia.objects.EditPostResultContract
+import ru.netology.nmedia.objects.NewPostResultContract
 import ru.netology.nmedia.viewmodel.PostViewModel
+import androidx.core.net.toUri
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +24,16 @@ class MainActivity : AppCompatActivity() {
 
 
         val viewModel: PostViewModel by viewModels()
+
+        val newPostLauncher = registerForActivityResult(NewPostResultContract) { result ->
+            result ?: return@registerForActivityResult
+            viewModel.save(result)
+        }
+
+        val editPostActivity = registerForActivityResult(EditPostResultContract) { result ->
+            result ?: return@registerForActivityResult
+            viewModel.save(result)
+        }
 
 //        val adapter = PostAdapter({
 //            viewModel.like(it.id)
@@ -41,6 +52,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onEdit(post: Post) {
                 viewModel.edit(post)
+                editPostActivity.launch(post.content)
             }
 
             override fun onDelete(post: Post) {
@@ -48,26 +60,32 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onRepost(post: Post) {
+
+                val intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, post.content)
+                    type = "text/plain"
+                }
+
+                val shareIntent =
+                    Intent.createChooser(intent, R.string.chooser_repost_text.toString())
+                startActivity(shareIntent)
                 viewModel.repost(post.id)
+            }
+
+            override fun onOpenVideoSrc(post: Post) {
+                val webpage: Uri = post.srcVideo.toUri()
+                val intent = Intent(Intent.ACTION_VIEW, webpage)
+                startActivity(intent)
             }
         })
 
         binding.listPosts.adapter = adapter
 
         viewModel.edited.observe(this) { post ->
-            if (post.id != 0) {
-                binding.content.setText(post.content)
 
-                //binding.viewEditInfo.visibility = View.GONE
-                binding.viewEditInfo.visibility = View.VISIBLE
-                binding.editViewTextviewContent.text = post.content
-
-                //binding.content.requestFocus()
-                AndroidUtils.showKeyboard(binding.content)
-            }
         }
 
-        binding.viewEditInfo.visibility = View.GONE
         //binding.viewEditInfo.visibility = View.INVISIBLE
 
 
@@ -80,33 +98,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.imageButtonAddEdit.setOnClickListener {
-            with(binding.content) {
-                if (text.isNullOrBlank()) {
-                    Toast.makeText(
-                        this@MainActivity,
-                        context.getString(R.string.error_empty_content),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    return@setOnClickListener
-                }
-
-                viewModel.save(content = text.toString())
-
-                setText("")
-                clearFocus()
-                AndroidUtils.hideKeyboard(this)
-            }
-        }
-
-        binding.cancelEditViewImage.setOnClickListener {
-            with(binding) {
-                viewEditInfo.visibility = View.GONE
-                //viewEditInfo.visibility = View.INVISIBLE
-                content.clearFocus()
-                content.setText("")
-                viewModel.cancelEdit()
-            }
+        binding.addPostContent.setOnClickListener {
+            viewModel.restorePost()
+            newPostLauncher.launch(Unit)
         }
 
 
