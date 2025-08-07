@@ -2,6 +2,7 @@ package ru.netology.nmedia.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.ListAdapter
@@ -62,7 +63,11 @@ class PostViewHolder(
             likeButton.isChecked = post.likeByMe
             if (post.srcVideo.isNotBlank()) {
                 //android:src="@drawable/sector_gaza"
+                videoImagePreView.visibility = View.VISIBLE
                 videoImagePreView.setImageResource(R.drawable.sector_gaza)
+            }
+            else{
+                videoImagePreView.visibility = View.GONE
             }
 //            likeButton.icon =
 //                if (post.likeByMe)
