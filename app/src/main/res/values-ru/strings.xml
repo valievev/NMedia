@@ -9,4 +9,5 @@
     <string name="error_empty_content">Текст поста не указан</string>
     <string name="menu_edit">Редактировать</string>
     <string name="edit_view_text">Редактирование Поста</string>
+    <string name="chooser_repost_text">Поделиться текстом поста</string>
 </resources>

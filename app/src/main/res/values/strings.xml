@@ -8,4 +8,5 @@
     <string name="error_empty_content">Content is null</string>
     <string name="menu_edit">Edit Post</string>
     <string name="edit_view_text">Edit Post</string>
+    <string name="chooser_repost_text">Share Post content</string>
 </resources>
