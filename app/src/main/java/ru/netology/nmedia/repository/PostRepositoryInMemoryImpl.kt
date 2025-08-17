@@ -158,6 +158,10 @@ class PostRepositoryInMemoryImpl : PostRepository {
         data.value = posts
     }
 
+    override fun getPostById(id: Int): Post? {
+        return null
+    }
+
     private fun getNextId(): Int {
         var nextId: Int = 1
         nextId = posts.maxOf { it.id }

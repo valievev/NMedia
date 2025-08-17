@@ -8,6 +8,7 @@ import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.repository.PostRepository
 import ru.netology.nmedia.repository.PostRepositoryInFilesImpl
 import ru.netology.nmedia.repository.PostRepositoryInMemoryImpl
+import kotlin.contracts.Returns
 
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
@@ -43,6 +44,10 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     fun restorePost() {
         edited.value = emptyPost;
+    }
+
+    fun getPostById(id: Int): Post?{
+        return repository.getPostById(id)
     }
 
 

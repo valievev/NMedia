@@ -85,6 +85,12 @@ class PostRepositoryInFilesImpl(private val context: Context) : PostRepository {
         data.value = posts
     }
 
+    override fun getPostById(id: Int): Post? {
+        var retPost:Post? = null
+        posts.map { if(it.id == id) retPost = it }
+        return retPost
+    }
+
     private fun getNextId(): Int {
         var nextId: Int = 0
         if (posts.isNotEmpty())

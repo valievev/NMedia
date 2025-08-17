@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/common_spacing"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.FeedFragment">
 
 
     <ImageView
@@ -15,9 +15,9 @@
         android:layout_height="@dimen/posts_avatar_size"
         android:layout_marginBottom="@dimen/common_spacing"
         android:contentDescription="@string/description_post_author_avatar"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/barrier"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@sample/posts.json/data/authorAvatar" />
 
     <TextView
@@ -28,10 +28,10 @@
         android:layout_marginEnd="@dimen/common_spacing"
         android:ellipsize="end"
         android:singleLine="true"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/published"
         app:layout_constraintEnd_toStartOf="@id/menu"
         app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="@sample/posts.json/data/author" />
 
@@ -42,24 +42,23 @@
         android:layout_marginStart="@dimen/common_spacing"
         android:layout_marginEnd="@dimen/common_spacing"
         android:layout_marginBottom="@dimen/common_spacing"
-        app:layout_constraintTop_toBottomOf="@id/author"
         app:layout_constraintBottom_toBottomOf="@id/barrier"
         app:layout_constraintEnd_toStartOf="@id/menu"
         app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toBottomOf="@id/author"
         tools:text="@sample/posts.json/data/published" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/menu"
+        style="@style/Widget.Material3.Button.IconButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/common_spacing"
         android:background="@android:color/transparent"
         android:contentDescription="@string/description_post_menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:icon="@drawable/ic_more_vert_24"
-        style="@style/Widget.Material3.Button.IconButton"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
@@ -84,8 +83,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:scaleType="fitStart"
         android:adjustViewBounds="true"
+        android:scaleType="fitStart"
         app:layout_constraintBottom_toTopOf="@id/barrier2"
         app:layout_constraintTop_toBottomOf="@id/content"
 
@@ -96,63 +95,58 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="videoImagePreView"
-        />
+        app:constraint_referenced_ids="videoImagePreView" />
 
 
     <com.google.android.material.button.MaterialButton
-        style="@style/Widget.Material3.Button.IconButton"
         android:id="@+id/likeButton"
+        style="@style/Widget.Material3.Button.IconButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:icon="@drawable/ic_like_24dp_selector"
-        app:layout_constraintTop_toBottomOf="@id/barrier2"
-        app:layout_constraintStart_toStartOf="parent"
         android:checkable="true"
-        tools:text="5"
-        app:iconTint="@android:color/holo_red_dark"
-        app:iconPadding="8dp"
-        android:paddingTop="12dp"
         android:minWidth="0dp"
         android:minHeight="0dp"
-        />
+        android:paddingTop="12dp"
+        app:icon="@drawable/ic_like_24dp_selector"
+        app:iconPadding="8dp"
+        app:iconTint="@android:color/holo_red_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
+        tools:text="5" />
 
 
     <com.google.android.material.button.MaterialButton
-        style="@style/Widget.Material3.Button.IconButton"
         android:id="@+id/repostButton"
+        style="@style/Widget.Material3.Button.IconButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:icon="@drawable/share_24px"
-        app:layout_constraintTop_toBottomOf="@id/barrier2"
-        app:layout_constraintStart_toEndOf="@id/likeButton"
-        android:paddingTop="12dp"
-        android:paddingStart="16dp"
-        app:iconPadding="8dp"
         android:minWidth="0dp"
         android:minHeight="0dp"
-        tools:text="5"
+        android:paddingStart="16dp"
+        android:paddingTop="12dp"
+        app:icon="@drawable/share_24px"
+        app:iconPadding="8dp"
         app:iconTint="@android:color/darker_gray"
-        tools:ignore="RtlSymmetry" />
-
-    <TextView
-        android:id="@+id/countViews"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="5"
+        app:layout_constraintStart_toEndOf="@id/likeButton"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:paddingTop="24dp"
-        />
+        tools:ignore="RtlSymmetry"
+        tools:text="5" />
 
-    <ImageView
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/imageViews"
+        style="@style/Widget.Material3.Button.IconButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/visibility_24px"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingStart="16dp"
+        android:paddingTop="12dp"
+        android:text="5"
+        app:icon="@drawable/visibility_24px"
+        app:iconPadding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
-        app:layout_constraintEnd_toStartOf="@id/countViews"
-        android:paddingEnd="5dp"
-        android:paddingTop="24dp"
+
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

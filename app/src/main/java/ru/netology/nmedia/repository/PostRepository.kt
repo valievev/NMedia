@@ -9,4 +9,5 @@ interface PostRepository {
     fun repostById(id: Int)
     fun deleteById(id: Int)
     fun save(post: Post)
+    fun getPostById(id: Int):Post?
 }

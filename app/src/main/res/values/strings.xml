@@ -9,4 +9,6 @@
     <string name="menu_edit">Edit Post</string>
     <string name="edit_view_text">Edit Post</string>
     <string name="chooser_repost_text">Share Post content</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

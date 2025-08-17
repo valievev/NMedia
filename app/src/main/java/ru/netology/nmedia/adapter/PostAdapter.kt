@@ -107,6 +107,10 @@ class PostViewHolder(
                     }
                 }.show()
             }
+
+            main.setOnClickListener{
+                onInteraction.showOnePost(post)
+            }
         }.root
     }
 }
