@@ -47,10 +47,11 @@ class OnePostFragment : Fragment() {
             ownerProducer = ::requireParentFragment
         )
         //binding.content.text = arguments?.idPost?.let { viewModel.getPostById(it)?.content } ?: "null"
-        val onePost = arguments?.idPost?.let { viewModel.getPostById(it) }
+
         viewModel.data.observe(viewLifecycleOwner) {
+            val onePost = arguments?.idPost?.let { viewModel.getPostById(it) }
             if (onePost != null) {
-                val postViewHolder = PostViewHolder(
+                PostViewHolder(
                     binding.post,
                     object : OnInteractionListener {
                         override fun onLike(post: Post) {
@@ -69,6 +70,7 @@ class OnePostFragment : Fragment() {
 
                         override fun onDelete(post: Post) {
                             viewModel.delete(post.id)
+                            findNavController().navigateUp()
                         }
 
                         override fun onRepost(post: Post) {
@@ -96,7 +98,7 @@ class OnePostFragment : Fragment() {
                     }).bind(
                     post = onePost
                 )
-                
+
             }
         }
         return binding.root
